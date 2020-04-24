@@ -4,6 +4,9 @@ from conans import ConanFile, CMake
 class HelloConan(ConanFile):
     name = "hello"
     version = "1.0"
+    lizenz = ""
+    description = ""
+    url = ""
     settings = "os", "compiler", "arch"
     options = {"shared": [True, False]}
     default_options = "shared=False"
