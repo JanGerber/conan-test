@@ -14,7 +14,7 @@ pipeline
         {
             steps
             {
-                bat label:'Conan Version', script: "conan --version"
+                sh label:'Conan Version', script: "conan --version"
                 script
                 {
                     artifactoryServer = Artifactory.server 'jan artifactory'
