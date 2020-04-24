@@ -37,24 +37,20 @@ pipeline
                 {
                     steps
                     {
-                        {
                             script
                             {
                                 artifactoryConanClient.run(command:"create -s build_type=Debug . jan/" + branchName)
                             }
-                        }
                     }
                 }
                 stage('Release')
                 {
                     steps
                     {
-                        {
                             script
                             {
                                buildInfo = artifactoryConanClient.run(command:"create -s build_type=Release .  jan/" + branchName)
                             }
-                        }
                     }
                 }
             }
