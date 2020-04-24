@@ -33,7 +33,7 @@ pipeline
                     {
                             script
                             {
-                                artifactoryConanClient.run(command:"create -s --profile custom build_type=Debug . jan/" + branchName)
+                                artifactoryConanClient.run(command:"create -pr=custom -s build_type=Debug . jan/" + branchName)
                             }
                     }
                 }
