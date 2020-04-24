@@ -7,13 +7,7 @@ def buildInfo
 
 pipeline
 {
-    agent
-    {
-        node
-        {
-            label "test-node"
-        }
-    }
+    agent any
     stages
     {
         stage("Conan Init")
