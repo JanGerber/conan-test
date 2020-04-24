@@ -43,7 +43,7 @@ pipeline
                     {
                             script
                             {
-                               buildInfo = artifactoryConanClient.run(command:"create -s build_type=Release .  jan/" + branchName)
+                               buildInfo = artifactoryConanClient.run(command:"create -pr=custom -s build_type=Release .  jan/" + branchName)
                             }
                     }
                 }
