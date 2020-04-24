@@ -17,7 +17,7 @@ pipeline
                 sh label:'Conan Version', script: "conan --version"
                 script
                 {
-                    artifactoryServer = Artifactory.server 'jan artifactory'
+                    artifactoryServer = Artifactory.server 'artifactory-jan'
                     artifactoryConanClient = Artifactory.newConanClient()
                     artifactoryServerName = artifactoryConanClient.remote.add server: artifactoryServer, repo: "test-repo"
                 }
