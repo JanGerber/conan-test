@@ -62,9 +62,9 @@ pipeline
                 script
                 {
                     String cmd = "upload TestProj/*@jan/" + branchName + " --all -r artifactory --confirm "
-                    artifactoryConanClient.run(command: cmd, buildInfo: buildInfo)
-                    buildInfo.retention maxBuilds: 3, deleteBuildArtifacts: true, async: true
-                    artifactoryServer.publishBuildInfo buildInfo
+                    def b = artifactoryConanClient.run(command: cmd, buildInfo: buildInfo)
+                    b.retention maxBuilds: 3, deleteBuildArtifacts: true, async: false
+                    artifactoryServer.publishBuildInfo b
                 }
             }
          }
