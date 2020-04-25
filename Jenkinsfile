@@ -43,8 +43,9 @@ pipeline
                         }
                 }
         }
+
         stage('Release')
-            {
+        {
                 steps
                 {
                         script
@@ -56,16 +57,16 @@ pipeline
 
         stage("Conan Upload")
         {
-                steps
+            steps
+            {
+                script
                 {
-                    script
-                    {
-                        String cmd = "upload TestProj/*@jan/" + branchName + " --all -r artifactory --confirm "
-                        artifactoryConanClient.run(command: cmd, buildInfo: buildInfo)
-                        buildInfo.retention maxBuilds: 3, deleteBuildArtifacts: true, async: true
-                        artifactoryServer.publishBuildInfo buildInfo
-                    }
+                    String cmd = "upload TestProj/*@jan/" + branchName + " --all -r artifactory --confirm "
+                    artifactoryConanClient.run(command: cmd, buildInfo: buildInfo)
+                    buildInfo.retention maxBuilds: 3, deleteBuildArtifacts: true, async: true
+                    artifactoryServer.publishBuildInfo buildInfo
                 }
+            }
          }
     }
 }
