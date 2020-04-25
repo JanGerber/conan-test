@@ -32,32 +32,26 @@ pipeline
                 }
             }
         }
-        stage("Conan Create")
-        {
-            parallel
+      stage('Debug')
+      {
+            steps
             {
-                stage('Debug')
-                {
-                    steps
+                    script
                     {
-                            script
-                            {
-                                artifactoryConanClient.run(command:"create -s build_type=Debug . jan/" + branchName)
-                            }
+                        artifactoryConanClient.run(command:"create -s build_type=Debug . jan/" + branchName)
                     }
-                }
-                stage('Release')
-                {
-                    steps
-                    {
-                            script
-                            {
-                               buildInfo = artifactoryConanClient.run(command:"create -s build_type=Release .  jan/" + branchName)
-                            }
-                    }
-                }
             }
         }
+    stage('Release')
+        {
+            steps
+            {
+                    script
+                    {
+                       buildInfo = artifactoryConanClient.run(command:"create -s build_type=Release .  jan/" + branchName)
+                    }
+            }
+    }
 
         stage("Conan Upload")
         {
