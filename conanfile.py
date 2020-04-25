@@ -4,9 +4,9 @@ from conans import ConanFile, CMake
 class HelloConan(ConanFile):
     name = "hello"
     version = "1.0"
-    lizenz = ""
-    description = ""
-    url = ""
+    lizenz = "<placeholder>"
+    description = "This is a test project for conan"
+    url = "https://github.com/JanGerber/conan-test"
     settings = "os", "compiler", "arch"
     options = {"shared": [True, False]}
     default_options = "shared=False"
