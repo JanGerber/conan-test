@@ -15,6 +15,7 @@ pipeline
             steps
             {
                 sh label:'Conan Version', script: "conan --version"
+                sh label:'CMake version', script: "cmake --version"
                 script
                 {
                     artifactoryServer = Artifactory.server 'artifactory-jan'

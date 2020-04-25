@@ -4,7 +4,7 @@ from conans import ConanFile, CMake
 class HelloConan(ConanFile):
     name = "hello"
     version = "1.0"
-    lizenz = "<placeholder>"
+    license = " "
     description = "This is a test project for conan"
     url = "https://github.com/JanGerber/conan-test"
     settings = "os", "compiler", "arch"
