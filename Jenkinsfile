@@ -33,39 +33,39 @@ pipeline
                 }
             }
         }
-      stage('Debug')
-      {
-            steps
-            {
-                    script
-                    {
-                        artifactoryConanClient.run(command:"create -s build_type=Debug . jan/" + branchName)
-                    }
-            }
-        }
-    stage('Release')
-        {
-            steps
-            {
-                    script
-                    {
-                       buildInfo = artifactoryConanClient.run(command:"create -s build_type=Release .  jan/" + branchName)
-                    }
-            }
-    }
-
-    stage("Conan Upload")
-        {
-            steps
-            {
-                script
+          stage('Debug')
+          {
+                steps
                 {
-                    String cmd = "upload TestProj/*@jan/" + branchName + " --all -r artifactory --confirm "
-                    artifactoryConanClient.run(command: cmd, buildInfo: buildInfo)
-                    buildInfo.retention maxBuilds: 3, deleteBuildArtifacts: true, async: true
-                    artifactoryServer.publishBuildInfo buildInfo
+                        script
+                        {
+                            artifactoryConanClient.run(command:"create -s build_type=Debug . jan/" + branchName)
+                        }
                 }
             }
-        } 
+        stage('Release')
+            {
+                steps
+                {
+                        script
+                        {
+                           buildInfo = artifactoryConanClient.run(command:"create -s build_type=Release .  jan/" + branchName)
+                        }
+                }
+        }
+
+        stage("Conan Upload")
+        {
+                steps
+                {
+                    script
+                    {
+                        String cmd = "upload TestProj/*@jan/" + branchName + " --all -r artifactory --confirm "
+                        artifactoryConanClient.run(command: cmd, buildInfo: buildInfo)
+                        buildInfo.retention maxBuilds: 3, deleteBuildArtifacts: true, async: true
+                        artifactoryServer.publishBuildInfo buildInfo
+                    }
+                }
+         }
     }
 }
