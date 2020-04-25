@@ -35,24 +35,24 @@ pipeline
         }
         stage('Debug')
         {
-                steps
+            steps
+            {
+                script
                 {
-                        script
-                        {
-                            artifactoryConanClient.run(command:"create -s build_type=Debug . jan/" + branchName)
-                        }
+                    artifactoryConanClient.run(command:"create -s build_type=Debug . jan/" + branchName)
                 }
+            }
         }
 
         stage('Release')
         {
-                steps
+            steps
+            {
+                script
                 {
-                        script
-                        {
-                           buildInfo = artifactoryConanClient.run(command:"create -s build_type=Release .  jan/" + branchName)
-                        }
+                   buildInfo = artifactoryConanClient.run(command:"create -s build_type=Release .  jan/" + branchName)
                 }
+            }
         }
 
         stage("Conan Upload")
