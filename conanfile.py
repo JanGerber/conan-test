@@ -2,7 +2,7 @@ from conans import ConanFile, CMake
 
 
 class HelloConan(ConanFile):
-    name = "hello"
+    name = "TestProj"
     version = "1.0"
     license = " "
     description = "This is a test project for conan"
