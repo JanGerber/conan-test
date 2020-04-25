@@ -22,6 +22,7 @@ pipeline
                     artifactoryConanClient = Artifactory.newConanClient()
                     artifactoryServerName = artifactoryConanClient.remote.add server: artifactoryServer, repo: "test-repo"
                     artifactoryConanClient.run(command:"remote add artifactory http://172.17.0.3:8081/artifactory/api/conan/conan-local")
+                    artifactoryConanClient.run(command:"user -p AP3WhQebfsYvJ3z1XXtnPgwp75V -r artifactory admin")
                     artifactoryConanClient.run(command:"profile new default")
                     artifactoryConanClient.run(command:"profile update settings.os=Linux default")
                     artifactoryConanClient.run(command:"profile update settings.arch=x86_64 default")
@@ -59,7 +60,7 @@ pipeline
             {
                 script
                 {
-                    String cmd = "upload TestProj/*@jan/" + branchName + " --all -r " + artifactoryServerName + " --confirm "
+                    String cmd = "upload TestProj/*@jan/" + branchName + " --all -r artifactory --confirm "
                     artifactoryConanClient.run(command: cmd, buildInfo: buildInfo)
                     buildInfo.retention maxBuilds: 3, deleteBuildArtifacts: true, async: true
                     artifactoryServer.publishBuildInfo buildInfo
