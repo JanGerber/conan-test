@@ -21,6 +21,11 @@ pipeline
                     artifactoryConanClient = Artifactory.newConanClient()
                     artifactoryServerName = artifactoryConanClient.remote.add server: artifactoryServer, repo: "test-repo"
                     artifactoryConanClient.run(command:"profile new default")
+                    artifactoryConanClient.run(command:"profile update settings.os=Linux default")
+                    artifactoryConanClient.run(command:"profile update settings.arch=x86_64 default")
+                    artifactoryConanClient.run(command:"profile update settings.arch_build=x86_64 default")
+                    artifactoryConanClient.run(command:"profile update settings.compiler=gcc default")
+                    artifactoryConanClient.run(command:"profile update settings.compiler.version=6 default")
                     artifactoryConanClient.run(command:"profile update settings.compiler.libcxx=libstdc++11 default")
                 }
             }
