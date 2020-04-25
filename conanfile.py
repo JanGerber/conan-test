@@ -12,6 +12,8 @@ class HelloConan(ConanFile):
     default_options = "shared=False"
     generators = "cmake"
     exports_sources = "src/*"
+    revision_mode = "scm"
+
 
     def build(self):
         for bt in ("Debug", "Release"):
