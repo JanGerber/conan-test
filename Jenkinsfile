@@ -63,7 +63,7 @@ pipeline
                 {
                     String cmd = "upload TestProj/*@jan/" + branchName + " --all -r artifactory --confirm "
                     def b = artifactoryConanClient.run(command: cmd, buildInfo: buildInfo)
-                    b.retention maxBuilds: 3, deleteBuildArtifacts: true, async: false
+                    b.retention maxBuilds: 3, deleteBuildArtifacts: true
                     artifactoryServer.publishBuildInfo b
                 }
             }
