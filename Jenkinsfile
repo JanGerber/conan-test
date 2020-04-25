@@ -33,8 +33,8 @@ pipeline
                 }
             }
         }
-          stage('Debug')
-          {
+        stage('Debug')
+        {
                 steps
                 {
                         script
@@ -42,7 +42,7 @@ pipeline
                             artifactoryConanClient.run(command:"create -s build_type=Debug . jan/" + branchName)
                         }
                 }
-            }
+        }
         stage('Release')
             {
                 steps
